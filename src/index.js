@@ -4,11 +4,13 @@ import * as serviceWorker from './serviceWorker';
 
 import Header from './components/Header/header'
 import Home from './components/Home/home'
+import Register from './components/Register/register'
 
 ReactDOM.render(
   <React.StrictMode>
     <Header />
     <Home />
+    <Register />
   </React.StrictMode>,
   document.getElementById('root')
 );
