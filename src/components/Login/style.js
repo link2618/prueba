@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     caja: {
         marginTop: '10px',
         backgroundColor: '#0DADA3',
-        width: '50%',
+        width: '43%',
         // alignSelf: 'center'
     },
     titulo: {
@@ -38,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
         '& .MuiOutlinedInput-root': {
             '& fieldset': {
               borderColor: '#FFF',
-            //   backgroundColor: '#FFF',
+            //   backgroundColor: '#FFF'
             },
             '&:hover fieldset': {
               borderColor: '#FFF',

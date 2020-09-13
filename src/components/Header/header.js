@@ -1,5 +1,7 @@
 import React from 'react'
 import { AppBar, Toolbar, Button } from '@material-ui/core'
+import { Link, NavLink } from "react-router-dom"
+
 
 import useStyles from './style'
 
@@ -9,8 +11,16 @@ function Header() {
       <header>
           <AppBar className={classes.root}>
               <Toolbar className={classes.boton}>
-                  <Button color="inherit">Login</Button>
-                  <Button color="inherit">Registro</Button>
+                  <Link to='/login' className={classes.link}>
+                    <Button color="inherit">
+                    Login
+                    </Button>
+                  </Link>
+                  <Link to='/registro' className={classes.link}>
+                    <Button color="inherit">
+                    Registro
+                    </Button>
+                  </Link>
               </Toolbar>
           </AppBar>
           <div className={classes.offset}/>

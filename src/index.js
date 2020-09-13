@@ -2,15 +2,11 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import * as serviceWorker from './serviceWorker';
 
-import Header from './components/Header/header'
-import Home from './components/Home/home'
-import Register from './components/Register/register'
+import App from './App'
 
 ReactDOM.render(
   <React.StrictMode>
-    <Header />
-    <Home />
-    <Register />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );

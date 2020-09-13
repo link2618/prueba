@@ -8,6 +8,10 @@ const useStyles = makeStyles((theme) => ({
     boton: {
         justifyContent: 'flex-end', 
     },
+    link: {
+        textDecoration: 'none',
+        color: '#FFF',
+    },
     offset: theme.mixins.toolbar // Para colocar el alto del header de forma dinamica
   }));
 
