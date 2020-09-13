@@ -57,16 +57,19 @@ function Tranferencia() {
                   <form className={classes.root}>
                   <Grid container>
                       <Grid item>
-                          <TextField id="outlined-basic" label="Numero de cuenta destino" variant="outlined" className={[classes.input, formError.numCuentaDest && classes.error]} name="numCuentaDest" 
+                          <TextField label="Numero de cuenta destino" variant="outlined" className={[classes.input, formError.numCuentaDest && classes.error]} name="numCuentaDest" 
                           value={formData.numCuentaDest} onChange={handleInputChange} helperText={formError.numCuentaDest ? "Campo Obligatorio" : "" } type="number" required />
-                          <TextField id="outlined-basic" label="Valor a tranferir" variant="outlined" className={[classes.input, formError.transferir && classes.error]} name="transferir" 
+                          <TextField label="Valor a tranferir" variant="outlined" className={[classes.input, formError.transferir && classes.error]} name="transferir" 
                           value={formData.transferir} onChange={handleInputChange} helperText={formError.transferir ? "Campo Obligatorio" : "" } type="number" required />
                       </Grid>
                   </Grid>
                   </form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => validation()}>
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                      validation()
+                      console.log(formData)
+                    }}>
                       FINALIZAR
                   </Button>
                </CardActions>

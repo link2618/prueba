@@ -50,7 +50,7 @@ function Deposito() {
                   <form className={classes.root}>
                   <Grid container>
                       <Grid item>
-                          <TextField id="outlined-basic" label="Valor a depositar" variant="outlined" className={[classes.input, formError.deposito && classes.error]} name="deposito" 
+                          <TextField label="Valor a depositar" variant="outlined" className={[classes.input, formError.deposito && classes.error]} name="deposito" 
                           value={formData.deposito} onChange={handleInputChange} helperText={formError.deposito ? "Campo Obligatorio" : "" } type="number" required />
                       </Grid>
                   </Grid>

@@ -3,6 +3,7 @@ import { Container, Card, CardContent, CardActions, Grid, Button, Typography, Te
 
 import useStyles from './style'
 import { validateEmail } from '../../utils/validations'
+import { login } from '../../services/login'
 
 function Login() {
     const classes = useStyles()
@@ -62,16 +63,21 @@ function Login() {
                   <form className={classes.root}>
                   <Grid container>
                       <Grid item>
-                          <TextField id="outlined-basic" label="Email" variant="outlined" className={[classes.input, formError.email && classes.error]} name="email" 
+                          <TextField label="Email" variant="outlined" className={[classes.input, formError.email && classes.error]} name="email" 
                           value={formData.email} onChange={handleInputChange} helperText={formError.email ? "Campo Obligatorio" : "" } required />
-                          <TextField id="outlined-password-input" label="Contraseña" type="password" variant="outlined" className={[classes.input, formError.pass && classes.error]} name="pass"
+                          <TextField label="Contraseña" type="password" variant="outlined" className={[classes.input, formError.pass && classes.error]} name="pass"
                           alue={formData.pass} onChange={handleInputChange} helperText={formError.pass ? "Campo Obligatorio" : "" } required />
                       </Grid>
                   </Grid>
                   </form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => validation()}>
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                      if(validation())
+                      {
+                          login(formData.email, formData.pass)
+                      }
+                  }}>
                       Entrar
                   </Button>
                </CardActions>

@@ -50,7 +50,7 @@ function Retiro() {
                   <form className={classes.root}>
                   <Grid container>
                       <Grid item>
-                          <TextField id="outlined-basic" label="Valor a retirar" variant="outlined" className={[classes.input, formError.retiro && classes.error]} name="retiro" 
+                          <TextField label="Valor a retirar" variant="outlined" className={[classes.input, formError.retiro && classes.error]} name="retiro" 
                           value={formData.retiro} onChange={handleInputChange} helperText={formError.retiro ? "Campo Obligatorio" : "" } type="number" required />
                       </Grid>
                   </Grid>

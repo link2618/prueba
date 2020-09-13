@@ -3,6 +3,7 @@ import { Container, Card, CardContent, CardActions, Grid, Button, Typography, Te
 
 import useStyles from './style'
 import { validateEmail } from '../../utils/validations'
+import { registro } from '../../services/registro'
 
 function Register() {
     const classes = useStyles()
@@ -98,22 +99,27 @@ function Register() {
                   <form className={classes.root}>
                   <Grid container>
                       <Grid item>
-                          <TextField id="outlined-basic" label="Nombres" variant="outlined" className={[classes.input, formError.name && classes.error]} name="name"
+                          <TextField label="Nombres" variant="outlined" className={[classes.input, formError.name && classes.error]} name="name"
                           value={formData.name} onChange={handleInputChange} helperText={formError.name ? "Escribir Nombre" : "" } required />
-                          <TextField id="outlined-basic" label="Identificación" variant="outlined" className={[classes.input, formError.identificacion && classes.error]} name="identificacion"
+                          <TextField label="Identificación" variant="outlined" className={[classes.input, formError.identificacion && classes.error]} name="identificacion"
                           value={formData.identificacion} onChange={handleInputChange} type="number" helperText={formError.identificacion ? "Numero de identificacion" : "" } required />
-                          <TextField id="outlined-basic" label="Email" variant="outlined" className={[classes.input, formError.email && classes.error]} name="email" 
+                          <TextField label="Email" variant="outlined" className={[classes.input, formError.email && classes.error]} name="email" 
                           value={formData.email} onChange={handleInputChange} helperText={formError.email ? "Agregar un correo electronico valido" : "" } required />
-                          <TextField id="outlined-password-input" label="Contraseña" type="password" variant="outlined" className={[classes.input, formError.pass && classes.error]} name="pass"
+                          <TextField label="Contraseña" type="password" variant="outlined" className={[classes.input, formError.pass && classes.error]} name="pass"
                           alue={formData.pass} onChange={handleInputChange} helperText={formError.pass ? cont.pass ? "La contraseña no coinciden" : "Ingresar contraseña" : "" } required />
-                          <TextField id="outlined-password-input" label="Confirmar contraseña" type="password" variant="outlined" className={[classes.input, formError.passRepit && classes.error]} name="passRepit"
+                          <TextField label="Confirmar contraseña" type="password" variant="outlined" className={[classes.input, formError.passRepit && classes.error]} name="passRepit"
                           alue={formData.passRepit} onChange={handleInputChange} helperText={formError.passRepit ? "Ingresar contraseña" : "" } required />
                       </Grid>
                   </Grid>
                   </form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => validation()}>
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                      if(validation())
+                      {
+                        registro(formData.name, formData.identificacion, formData.email, formData.pass)
+                      }
+                  }}>
                       Registrarse
                   </Button>
                </CardActions>
