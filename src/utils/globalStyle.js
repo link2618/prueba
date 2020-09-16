@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
         backgroundColor: '#FFF',
         textColor: '#FFF',
         fontWeight: 'bold'
+    },
+    icono: {
+        color: '#FFF',
+        backgroundColor: '#FFF',
     }
 }));
 

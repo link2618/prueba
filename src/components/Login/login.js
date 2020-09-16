@@ -10,6 +10,7 @@ import { login } from '../../services/login'
 
 function Login() {
     const classes = useStyles()
+    const [visible, setVisible] = useState(false)
     const [formData, setFormData] = useState({
         email: '',
         pass: ''
@@ -65,6 +66,10 @@ function Login() {
         }
     }
 
+    const visibleBoton = () => {
+        setVisible(!visible)
+    }
+
     return (
       <Container className={classes.container}>
           <Card className={classes.caja}>
@@ -82,15 +87,18 @@ function Login() {
                                 helperText = {formError.email ? cont.pass ? "Correo electronico invalido." : "Campo Obligatorio." : ""}
                                 required = {true}
                             />
-                            <Control.Input
+                            <Control.InputIcon
                                 name = 'pass'
                                 label = 'Contraseña'
                                 value = {formData.pass}
                                 onChange = {handleInputChange}
-                                type = 'password'
+                                type = {visible ? 'text' : 'password'}
                                 error = {formError.pass}
                                 helperText = {formError.pass ? "Campo Obligatorio." : ""}
                                 required = {true}
+                                onClick = {visibleBoton}
+                                // onMouseDown = {}
+                                icon = {visible}
                             />
                         </Grid>
                     </Grid>

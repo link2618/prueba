@@ -10,6 +10,7 @@ import { registro } from '../../services/registro'
 
 function Register() {
     const classes = useStyles()
+    const [visible, setVisible] = useState(false)
     const [formData, setFormData] = useState({
         name: '',
         identificacion: '',
@@ -95,6 +96,10 @@ function Register() {
         }
     }
 
+    const visibleBoton = () => {
+        setVisible(!visible)
+    }
+
     return (
       <Container className={classes.container}>
           <Card className={classes.caja}>
@@ -117,6 +122,7 @@ function Register() {
                                 label = 'Identificación'
                                 value = {formData.identificacion}
                                 onChange = {handleInputChange}
+                                type = 'number'
                                 error = {formError.identificacion}
                                 helperText = {formError.identificacion ? "Campo Obligatorio." : ""}
                                 required = {true}
@@ -127,28 +133,34 @@ function Register() {
                                 value = {formData.email}
                                 onChange = {handleInputChange}
                                 error = {formError.email}
-                                helperText = {formError.email ? cont.pass ? "Correo electronico invalido." : "Campo Obligatorio." : ""}
+                                helperText = {formError.email ? cont.email ? "Correo electronico invalido." : "Campo Obligatorio." : ""}
                                 required = {true}
                             />
-                            <Control.Input
+                            <Control.InputIcon
                                 name = 'pass'
                                 label = 'Contraseña'
                                 value = {formData.pass}
                                 onChange = {handleInputChange}
-                                type = 'password'
+                                type = {visible ? 'text' : 'password'}
                                 error = {formError.pass}
                                 helperText = {formError.pass ? cont.pass ? "La contraseña no coinciden" : "Campo Obligatorio." : ""}
                                 required = {true}
+                                onClick = {visibleBoton}
+                                // onMouseDown = {}
+                                icon = {visible}
                             />
-                            <Control.Input
+                            <Control.InputIcon
                                 name = 'passRepit'
-                                label = 'Confirmar contraseña'
+                                label = 'Contraseña'
                                 value = {formData.passRepit}
                                 onChange = {handleInputChange}
-                                type = 'password'
+                                type = {visible ? 'text' : 'password'}
                                 error = {formError.passRepit}
                                 helperText = {formError.passRepit ? cont.pass ? "La contraseña no coinciden" : "Campo Obligatorio." : ""}
                                 required = {true}
+                                onClick = {visibleBoton}
+                                // onMouseDown = {}
+                                icon = {visible}
                             />
                         </Grid>
                     </Grid>
