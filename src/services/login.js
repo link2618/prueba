@@ -1,4 +1,5 @@
-const URL = ""
+import { WEB } from '../utils/constantes'
+const URL = `${WEB}/api/usuario/ValidarLogin`
 
 export const login = async (email, pass) => {
 
@@ -7,9 +8,9 @@ export const login = async (email, pass) => {
         clave: pass
     }
 
-    console.log(envio)
+    // console.log(envio)
     
-    /* return new Promise((resolver, rechazar) => {
+    return new Promise((resolver, rechazar) => {
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -23,11 +24,28 @@ export const login = async (email, pass) => {
             return response.json()
         })
         .then( async json => {
-            console.log(json)
+            // console.log(json)
+            if(json == null)
+            {
+                alert("Alguno de os datos esta incorrecto")
+            }else
+            {
+                // Guardar datos en data
+                /* {
+                    "CUENTA": [],
+                    "id_usuario": 1,
+                    "nombre": "Anita",
+                    "identificacion": "123456789",
+                    "email": "anitaaaaaa2asdas@gmail.com",
+                    "clave": "111111",
+                    "estado": "1"
+                } */
+                alert("Logueo exitoso.")
+            }
         })
         .catch(error => {
             console.error(error)
             resolver(false)
         })
-    }) */
+    })
 }

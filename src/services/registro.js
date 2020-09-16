@@ -1,4 +1,5 @@
-const URL = ""
+import { WEB } from '../utils/constantes'
+const URL = `${WEB}/api/usuario/RegistrarUsuario`
 
 export const registro = async (nombre, identificacion, email, pass) => {
 
@@ -7,12 +8,12 @@ export const registro = async (nombre, identificacion, email, pass) => {
         identificacion: identificacion,
         email: email,
         clave: pass,
-        estado: 1
+        estado: '1'
     }
 
-    console.log(envio)
+    // console.log(envio)
     
-    /* return new Promise((resolver, rechazar) => {
+    return new Promise((resolver, rechazar) => {
         fetch(URL, {
             method: 'POST',
             headers: {
@@ -27,10 +28,26 @@ export const registro = async (nombre, identificacion, email, pass) => {
         })
         .then( async json => {
             console.log(json)
+            if (json === true)
+            {
+                alert("Se ha registrado con exito")
+            }else
+            {
+                switch(json.Message)
+                {
+                    /* case "El email esta siendo usado por otro usuario.":
+                        break
+                    case "La identificación está siendo usada por otro usuario.":
+                        break */
+                    default:
+                        alert(json.Message)
+                        break
+                }
+            }
         })
         .catch(error => {
             console.error(error)
             resolver(false)
         })
-    }) */
+    })
 }

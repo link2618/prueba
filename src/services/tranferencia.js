@@ -1,4 +1,5 @@
-const URL = ""
+import { WEB } from '../utils/constantes'
+const URL = `${WEB}/api/cuenta/Transferencia`
 
 export const tranferencia = async (cuentaO, cant, cuentaD) => {
 
