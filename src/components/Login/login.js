@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { Container, Card, CardContent, CardActions, Grid, Button, Typography, TextField } from '@material-ui/core'
+import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
 
-import useStyles from './style'
+import useStyles from '../../utils/globalStyle'
+import { Form } from '../Control/form'
+import Control from '../Control/control'
+
 import { validateEmail } from '../../utils/validations'
 import { login } from '../../services/login'
 
@@ -12,6 +15,10 @@ function Login() {
         pass: ''
     })
     const [formError, setFormError] = useState({
+        email: false,
+        pass: false
+    })
+    const [cont, setCont] = useState({
         email: false,
         pass: false
     })
@@ -26,6 +33,7 @@ function Login() {
     const validation = () => {
         let errors = {}
         let comp = true //comprobante para saber si todos los campos pasaron la validacion
+        let conts = {}
         if (!formData.email || !formData.pass) 
         {
             if (!formData.email) 
@@ -42,9 +50,11 @@ function Login() {
         {
             errors.email = true
             comp = false
+            conts.pass = true
         }
 
         setFormError(errors)
+        setCont(conts)
 
         if(comp)
         {
@@ -60,16 +70,31 @@ function Login() {
           <Card className={classes.caja}>
               <CardContent>
                   <Typography className={classes.titulo}>LOGIN</Typography>
-                  <form className={classes.root}>
-                  <Grid container>
-                      <Grid item>
-                          <TextField label="Email" variant="outlined" className={[classes.input, formError.email && classes.error]} name="email" 
-                          value={formData.email} onChange={handleInputChange} helperText={formError.email ? "Campo Obligatorio" : "" } required />
-                          <TextField label="Contraseña" type="password" variant="outlined" className={[classes.input, formError.pass && classes.error]} name="pass"
-                          alue={formData.pass} onChange={handleInputChange} helperText={formError.pass ? "Campo Obligatorio" : "" } required />
-                      </Grid>
-                  </Grid>
-                  </form>
+                  <Form>
+                    <Grid container>
+                        <Grid item>
+                            <Control.Input
+                                name = 'email'
+                                label = 'Email'
+                                value = {formData.email}
+                                onChange = {handleInputChange}
+                                error = {formError.email}
+                                helperText = {formError.email ? cont.pass ? "Correo electronico invalido." : "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                            <Control.Input
+                                name = 'pass'
+                                label = 'Contraseña'
+                                value = {formData.pass}
+                                onChange = {handleInputChange}
+                                type = 'password'
+                                error = {formError.pass}
+                                helperText = {formError.pass ? "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                        </Grid>
+                    </Grid>
+                  </Form>
               </CardContent>
               <CardActions>
                   <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {

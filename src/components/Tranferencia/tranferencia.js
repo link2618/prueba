@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Container, Card, CardContent, CardActions, Grid, Button, Typography, TextField } from '@material-ui/core'
+import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
 
-import useStyles from './style'
+import useStyles from '../../utils/globalStyle'
+import { Form } from '../Control/form'
+import Control from '../Control/control'
 
 function Tranferencia() {
     const classes = useStyles()
@@ -54,21 +56,39 @@ function Tranferencia() {
           <Card className={classes.caja}>
               <CardContent>
                   <Typography className={classes.titulo}>TRANSFERENCIA</Typography>
-                  <form className={classes.root}>
+                  <Form>
                   <Grid container>
                       <Grid item>
-                          <TextField label="Numero de cuenta destino" variant="outlined" className={[classes.input, formError.numCuentaDest && classes.error]} name="numCuentaDest" 
-                          value={formData.numCuentaDest} onChange={handleInputChange} helperText={formError.numCuentaDest ? "Campo Obligatorio" : "" } type="number" required />
-                          <TextField label="Valor a tranferir" variant="outlined" className={[classes.input, formError.transferir && classes.error]} name="transferir" 
-                          value={formData.transferir} onChange={handleInputChange} helperText={formError.transferir ? "Campo Obligatorio" : "" } type="number" required />
+                          <Control.Input
+                                name = 'numCuentaDest'
+                                label = 'Numero de cuenta destino'
+                                value = {formData.numCuentaDest}
+                                onChange = {handleInputChange}
+                                error = {formError.numCuentaDest}
+                                helperText = {formError.numCuentaDest ? "Campo Obligatorio." : ""}
+                                required = {true}
+                                type = "number"
+                            />
+                            <Control.Input
+                                name = 'transferir'
+                                label = 'Valor a tranferir'
+                                value = {formData.transferir}
+                                onChange = {handleInputChange}
+                                error = {formError.transferir}
+                                helperText = {formError.transferir ? "Campo Obligatorio." : ""}
+                                required = {true}
+                                type = "number"
+                            />
                       </Grid>
                   </Grid>
-                  </form>
+                  </Form>
               </CardContent>
               <CardActions>
                   <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
-                      validation()
-                      console.log(formData)
+                      if(validation())
+                      {
+                        console.log(formData)
+                      }
                     }}>
                       FINALIZAR
                   </Button>

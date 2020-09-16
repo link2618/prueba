@@ -1,6 +1,9 @@
 import { makeStyles } from '@material-ui/core'
 
 const useStyles = makeStyles((theme) => ({
+    /* ------------------------------------- 
+                   FORMULARIOS 
+    ------------------------------------- */
     container: {
         display: 'flex',
         flexWrap: 'wrap',
@@ -10,7 +13,7 @@ const useStyles = makeStyles((theme) => ({
     caja: {
         marginTop: '10px',
         backgroundColor: '#0DADA3',
-        width: '50%',
+        // width: '43%',
         // alignSelf: 'center'
     },
     titulo: {

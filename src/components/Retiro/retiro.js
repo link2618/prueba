@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Container, Card, CardContent, CardActions, Grid, Button, Typography, TextField } from '@material-ui/core'
+import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
 
-import useStyles from './style'
+import useStyles from '../../utils/globalStyle'
+import { Form } from '../Control/form'
+import Control from '../Control/control'
 
 function Retiro() {
     const classes = useStyles()
@@ -47,17 +49,30 @@ function Retiro() {
           <Card className={classes.caja}>
               <CardContent>
                   <Typography className={classes.titulo}>RETIRO</Typography>
-                  <form className={classes.root}>
+                  <Form>
                   <Grid container>
                       <Grid item>
-                          <TextField label="Valor a retirar" variant="outlined" className={[classes.input, formError.retiro && classes.error]} name="retiro" 
-                          value={formData.retiro} onChange={handleInputChange} helperText={formError.retiro ? "Campo Obligatorio" : "" } type="number" required />
+                          <Control.Input
+                                name = 'retiro'
+                                label = 'Valor a retirar'
+                                value = {formData.retiro}
+                                onChange = {handleInputChange}
+                                error = {formError.retiro}
+                                helperText = {formError.retiro ? "Campo Obligatorio." : ""}
+                                required = {true}
+                                type = "number"
+                            />
                       </Grid>
                   </Grid>
-                  </form>
+                  </Form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => validation()}>
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                      if(validation())
+                      {
+                          console.log(formData)
+                      }
+                  }}>
                       RETIRAR
                   </Button>
                </CardActions>

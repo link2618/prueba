@@ -1,7 +1,10 @@
 import React, { useState } from 'react'
-import { Container, Card, CardContent, CardActions, Grid, Button, Typography, TextField } from '@material-ui/core'
+import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
 
 import useStyles from './style'
+import { Form } from '../Control/form'
+import Control from '../Control/control'
+
 import { validateEmail } from '../../utils/validations'
 import { registro } from '../../services/registro'
 
@@ -71,6 +74,7 @@ function Register() {
         {
             errors.email = true
             comp = false
+            conts.email = true
         }else if(formData.pass !== formData.passRepit)
         {
             errors.pass = true
@@ -96,22 +100,59 @@ function Register() {
           <Card className={classes.caja}>
               <CardContent>
                   <Typography className={classes.titulo}>REGISTRO</Typography>
-                  <form className={classes.root}>
-                  <Grid container>
-                      <Grid item>
-                          <TextField label="Nombres" variant="outlined" className={[classes.input, formError.name && classes.error]} name="name"
-                          value={formData.name} onChange={handleInputChange} helperText={formError.name ? "Escribir Nombre" : "" } required />
-                          <TextField label="Identificación" variant="outlined" className={[classes.input, formError.identificacion && classes.error]} name="identificacion"
-                          value={formData.identificacion} onChange={handleInputChange} type="number" helperText={formError.identificacion ? "Numero de identificacion" : "" } required />
-                          <TextField label="Email" variant="outlined" className={[classes.input, formError.email && classes.error]} name="email" 
-                          value={formData.email} onChange={handleInputChange} helperText={formError.email ? "Agregar un correo electronico valido" : "" } required />
-                          <TextField label="Contraseña" type="password" variant="outlined" className={[classes.input, formError.pass && classes.error]} name="pass"
-                          alue={formData.pass} onChange={handleInputChange} helperText={formError.pass ? cont.pass ? "La contraseña no coinciden" : "Ingresar contraseña" : "" } required />
-                          <TextField label="Confirmar contraseña" type="password" variant="outlined" className={[classes.input, formError.passRepit && classes.error]} name="passRepit"
-                          alue={formData.passRepit} onChange={handleInputChange} helperText={formError.passRepit ? "Ingresar contraseña" : "" } required />
-                      </Grid>
-                  </Grid>
-                  </form>
+                  <Form >
+                    <Grid container>
+                        <Grid item>
+                            <Control.Input
+                                name = 'name'
+                                label = 'Nombres'
+                                value = {formData.name}
+                                onChange = {handleInputChange}
+                                error = {formError.name}
+                                helperText = {formError.name ? "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                            <Control.Input
+                                name = 'identificacion'
+                                label = 'Identificación'
+                                value = {formData.identificacion}
+                                onChange = {handleInputChange}
+                                error = {formError.identificacion}
+                                helperText = {formError.identificacion ? "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                            <Control.Input
+                                name = 'email'
+                                label = 'Email'
+                                value = {formData.email}
+                                onChange = {handleInputChange}
+                                error = {formError.email}
+                                helperText = {formError.email ? cont.pass ? "Correo electronico invalido." : "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                            <Control.Input
+                                name = 'pass'
+                                label = 'Contraseña'
+                                value = {formData.pass}
+                                onChange = {handleInputChange}
+                                type = 'password'
+                                error = {formError.pass}
+                                helperText = {formError.pass ? cont.pass ? "La contraseña no coinciden" : "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                            <Control.Input
+                                name = 'passRepit'
+                                label = 'Confirmar contraseña'
+                                value = {formData.passRepit}
+                                onChange = {handleInputChange}
+                                type = 'password'
+                                error = {formError.passRepit}
+                                helperText = {formError.passRepit ? cont.pass ? "La contraseña no coinciden" : "Campo Obligatorio." : ""}
+                                required = {true}
+                            />
+                        </Grid>
+                    </Grid>
+                  </Form>
               </CardContent>
               <CardActions>
                   <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {

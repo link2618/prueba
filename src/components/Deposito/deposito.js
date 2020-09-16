@@ -1,7 +1,9 @@
 import React, { useState } from 'react'
-import { Container, Card, CardContent, CardActions, Grid, Button, Typography, TextField } from '@material-ui/core'
+import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
 
-import useStyles from './style'
+import useStyles from '../../utils/globalStyle'
+import { Form } from '../Control/form'
+import Control from '../Control/control'
 
 function Deposito() {
     const classes = useStyles()
@@ -47,17 +49,30 @@ function Deposito() {
           <Card className={classes.caja}>
               <CardContent>
                   <Typography className={classes.titulo}>DEPOSITO</Typography>
-                  <form className={classes.root}>
+                  <Form>
                   <Grid container>
                       <Grid item>
-                          <TextField label="Valor a depositar" variant="outlined" className={[classes.input, formError.deposito && classes.error]} name="deposito" 
-                          value={formData.deposito} onChange={handleInputChange} helperText={formError.deposito ? "Campo Obligatorio" : "" } type="number" required />
+                          <Control.Input
+                                name = 'deposito'
+                                label = 'Valor a depositar'
+                                value = {formData.deposito}
+                                onChange = {handleInputChange}
+                                error = {formError.deposito}
+                                helperText = {formError.deposito ? "Campo Obligatorio." : ""}
+                                required = {true}
+                                type = "number"
+                            />
                       </Grid>
                   </Grid>
-                  </form>
+                  </Form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => validation()}>
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                      if(validation())
+                      {
+                          console.log(formData)
+                      }
+                  }}>
                       DEPOSITAR
                   </Button>
                </CardActions>
