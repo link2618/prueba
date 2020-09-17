@@ -1,5 +1,4 @@
-import { WEB } from '../utils/constantes'
-const URL = `${WEB}/api/cuenta/Transferencia`
+import { TRANFERENCIA } from '../utils/constantes'
 
 export const tranferencia = async (cuentaO, cant, cuentaD) => {
 
@@ -12,7 +11,7 @@ export const tranferencia = async (cuentaO, cant, cuentaD) => {
     console.log(envio)
     
     /* return new Promise((resolver, rechazar) => {
-        fetch(URL, {
+        fetch(TRANFERENCIA, {
             method: 'POST',
             headers: {
                 Accept: 'application/json',

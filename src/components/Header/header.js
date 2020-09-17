@@ -1,16 +1,31 @@
-import React from 'react'
-import { AppBar, Toolbar, Button } from '@material-ui/core'
-import { Link, NavLink } from "react-router-dom"
+import React, { useState } from 'react'
+import { AppBar, Toolbar, Button, Typography } from '@material-ui/core'
+import { Link } from "react-router-dom"
 
 
 import useStyles from './style'
 
 function Header() {
     const classes = useStyles()
+    const [login, setLogin] = useState(false)
     return (
       <header>
           <AppBar className={classes.root}>
-              <Toolbar className={classes.boton}>
+              <Toolbar className={classes.derecha}>
+                  {login ?
+                  <>
+                  <Link to='/retiro' className={classes.link}>
+                      <Button color="inherit">Retiro</Button>
+                  </Link>
+                  <Link to='/deposito' className={classes.link}>
+                      <Button color="inherit">Deposito</Button>
+                  </Link>
+                  <Link to='/tranferencia' className={classes.link}>
+                      <Button color="inherit">Tranferencia</Button>
+                  </Link>
+                  <Typography className={classes.user}>Bienvenido Usuario</Typography>
+                  </> :
+                  <>
                   <Link to='/login' className={classes.link}>
                     <Button color="inherit">
                     Login
@@ -21,6 +36,8 @@ function Header() {
                     Registro
                     </Button>
                   </Link>
+                  </>
+                  }
               </Toolbar>
           </AppBar>
           <div className={classes.offset}/>

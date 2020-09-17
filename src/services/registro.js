@@ -1,5 +1,4 @@
-import { WEB } from '../utils/constantes'
-const URL = `${WEB}/api/usuario/RegistrarUsuario`
+import { REGISTER } from '../utils/constantes'
 
 export const registro = async (nombre, identificacion, email, pass) => {
 
@@ -14,7 +13,7 @@ export const registro = async (nombre, identificacion, email, pass) => {
     console.log(envio)
     
     // return new Promise((resolver, rechazar) => {
-    //     fetch(URL, {
+    //     fetch(REGISTER, {
     //         method: 'POST',
     //         headers: {
     //             Accept: 'application/json',

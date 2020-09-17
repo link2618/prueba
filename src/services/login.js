@@ -1,5 +1,4 @@
-import { WEB } from '../utils/constantes'
-const URL = `${WEB}/api/usuario/ValidarLogin`
+import { LOGIN } from '../utils/constantes'
 
 export const login = async (email, pass) => {
 
@@ -11,7 +10,7 @@ export const login = async (email, pass) => {
     console.log(envio)
     
     // return new Promise((resolver, rechazar) => {
-    //     fetch(URL, {
+    //     fetch(LOGIN, {
     //         method: 'POST',
     //         headers: {
     //             Accept: 'application/json',
