@@ -1,13 +1,14 @@
 import React, { useState } from 'react'
 import { AppBar, Toolbar, Button, Typography } from '@material-ui/core'
 import { Link } from "react-router-dom"
-
+import { connect } from "react-redux"
 
 import useStyles from './style'
 
-function Header() {
+function Header({ data }) {
     const classes = useStyles()
     const [login, setLogin] = useState(false)
+    console.log(data)
     return (
       <header>
           <AppBar className={classes.root}>
@@ -45,4 +46,9 @@ function Header() {
     )
   }
   
-  export default Header
+  // export default Header
+const mapStateToProps = state => {
+    return { data: state.logueado }
+}
+
+export default connect(mapStateToProps)(Header)
