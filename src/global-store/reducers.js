@@ -5,8 +5,7 @@ import { log } from '../data'
 const logueado = (state = log, action) => {
     switch(action.type) {
         case actionTypes.LOGEADO: {
-            // return state.map(x => x.id === action.payload.data1[0].id ? ({ ...x, activo: !x.activo }) : x)
-            return state
+            return state.map(x => x.id === action.payload.data1[0].id ? ({ ...x, activo: !x.activo }) : x)
         }
         default: {
             return state

@@ -1,5 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
+import { connect } from "react-redux"
+// import { Redirect } from "react-router-dom"
 
 import useStyles from '../../utils/globalStyle'
 import { Form } from '../Control/form'
@@ -7,8 +9,9 @@ import Control from '../Control/control'
 
 import { validateEmail } from '../../utils/validations'
 import { login } from '../../services/login'
+import { logueado } from '../../global-store/actions'
 
-function Login() {
+function Login({ data1, logueado }) {
     const classes = useStyles()
     const [visible, setVisible] = useState(false)
     const [formData, setFormData] = useState({
@@ -105,10 +108,15 @@ function Login() {
                   </Form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={async () => {
                       if(validation())
                       {
-                          login(formData.email, formData.pass)
+                          let resp = await login(formData.email, formData.pass)
+                          if(resp)
+                          {
+                            logueado({data1})
+                            // return <Redirect to='/home' />
+                          }
                       }
                   }}>
                       Entrar
@@ -119,4 +127,14 @@ function Login() {
     )
 }
   
-export default Login
+// export default Login
+
+const mapStateToProps = state => {
+    return { data1: state.logueado }
+}
+
+const mapDispatchToProps = dispatch => ({
+    logueado: (item) => dispatch(logueado(item))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login)

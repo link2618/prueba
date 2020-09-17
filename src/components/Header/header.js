@@ -5,15 +5,14 @@ import { connect } from "react-redux"
 
 import useStyles from './style'
 
-function Header({ data }) {
+function Header({ data1 }) {
     const classes = useStyles()
-    const [login, setLogin] = useState(false)
-    console.log(data)
+    // console.log(data1[0].activo)
     return (
       <header>
           <AppBar className={classes.root}>
               <Toolbar className={classes.derecha}>
-                  {login ?
+                  {data1[0].activo ?
                   <>
                   <Link to='/retiro' className={classes.link}>
                       <Button color="inherit">Retiro</Button>
@@ -48,7 +47,7 @@ function Header({ data }) {
   
   // export default Header
 const mapStateToProps = state => {
-    return { data: state.logueado }
+    return { data1: state.logueado }
 }
 
 export default connect(mapStateToProps)(Header)
