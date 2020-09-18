@@ -10,43 +10,45 @@ export const registro = async (nombre, identificacion, email, pass) => {
         estado: '1'
     }
 
-    console.log(envio)
+    // console.log(envio)
     
-    // return new Promise((resolver, rechazar) => {
-    //     fetch(REGISTER, {
-    //         method: 'POST',
-    //         headers: {
-    //             Accept: 'application/json',
-    //             'Content-Type': 'application/json',
-    //         },
-    //         body: JSON.stringify(envio)
-    //     })
-    //     .then(response => {
-    //         // console.log(response)
-    //         return response.json()
-    //     })
-    //     .then( async json => {
-    //         console.log(json)
-    //         if (json === true)
-    //         {
-    //             alert("Se ha registrado con exito")
-    //         }else
-    //         {
-    //             switch(json.Message)
-    //             {
-    //                 /* case "El email esta siendo usado por otro usuario.":
-    //                     break
-    //                 case "La identificación está siendo usada por otro usuario.":
-    //                     break */
-    //                 default:
-    //                     alert(json.Message)
-    //                     break
-    //             }
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.error(error)
-    //         resolver(false)
-    //     })
-    // })
+    return new Promise((resolver, rechazar) => {
+        fetch(REGISTER, {
+            method: 'POST',
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(envio)
+        })
+        .then(response => {
+            // console.log(response)
+            return response.json()
+        })
+        .then( async json => {
+            console.log(json)
+            if (json === true)
+            {
+                alert("Se ha registrado con exito")
+                resolver(true)
+            }else
+            {
+                switch(json.Message)
+                {
+                    /* case "El email esta siendo usado por otro usuario.":
+                        break
+                    case "La identificación está siendo usada por otro usuario.":
+                        break */
+                    default:
+                        alert(json.Message)
+                        resolver(false)
+                        break
+                }
+            }
+        })
+        .catch(error => {
+            console.error(error)
+            resolver(false)
+        })
+    })
 }

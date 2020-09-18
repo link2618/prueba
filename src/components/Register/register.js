@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
+import { useHistory } from "react-router-dom"
 
 import useStyles from './style'
 import { Form } from '../Control/form'
@@ -9,6 +10,7 @@ import { validateEmail } from '../../utils/validations'
 import { registro } from '../../services/registro'
 
 function Register() {
+    let history = useHistory()
     const classes = useStyles()
     const [visible, setVisible] = useState(false)
     const [formData, setFormData] = useState({
@@ -167,10 +169,14 @@ function Register() {
                   </Form>
               </CardContent>
               <CardActions>
-                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={() => {
+                  <Button type="submit" size="large" variant="contained" className={classes.boton} onClick={async() => {
                       if(validation())
                       {
-                        registro(formData.name, formData.identificacion, formData.email, formData.pass)
+                        let resp = await registro(formData.name, formData.identificacion, formData.email, formData.pass)
+                        if(resp)
+                        {
+                            history.replace("/login")
+                        }
                       }
                   }}>
                       Registrarse

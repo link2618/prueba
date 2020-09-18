@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, Card, CardContent, CardActions, Grid, Button, Typography } from '@material-ui/core'
 import { connect } from "react-redux"
-// import { Redirect } from "react-router-dom"
+import { useHistory, useLocation } from "react-router-dom"
 
 import useStyles from '../../utils/globalStyle'
 import { Form } from '../Control/form'
@@ -12,6 +12,8 @@ import { login } from '../../services/login'
 import { logueado } from '../../global-store/actions'
 
 function Login({ data1, logueado }) {
+    let history = useHistory()
+    let location = useLocation()
     const classes = useStyles()
     const [visible, setVisible] = useState(false)
     const [formData, setFormData] = useState({
@@ -115,7 +117,7 @@ function Login({ data1, logueado }) {
                           if(resp)
                           {
                             logueado({data1})
-                            // return <Redirect to='/home' />
+                            history.replace("/home")
                           }
                       }
                   }}>
